@@ -1,0 +1,93 @@
+﻿@model JobPortalApplication.Models.CompanyModel.CompanyDto
+
+@{
+    ViewData["Title"] = "Employer";
+    Layout = "~/Views/Shared/_Layout_login.cshtml";
+}
+
+ <div class="container">
+
+      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+
+               <div class="card mb-3" style="max-width: 600px; margin: 0 auto;">
+
+                <div class="card-body"  style="width:600px;">
+          <div class="pt-4 pb-2">
+                    <h5 class="card-title text-center pb-0 fs-4">Create Your Company  Profile </h5>
+                    <p class="text-center small">Enter Your  Company Details </p>
+                  </div>
+        <form asp-action="Employer" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="CompanyName" class="control-label"></label>
+                <input asp-for="CompanyName" class="form-control" />
+                <span asp-validation-for="CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Industry" class="control-label"></label>
+                <select asp-for="Industry" class="form-control" >
+                    <option value="">--Select Industry--</option>
+                    @foreach (Industry i in ViewBag.industry)
+                    {
+                        <option value="@i.IndustryId">@i.IndustryName</option>
+                    }
+                    {
+                        
+
+                    }
+                </select>
+                <span asp-validation-for="Industry" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Website" class="control-label"></label>
+                <input asp-for="Website" class="form-control" />
+                <span asp-validation-for="Website" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label"></label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mobile" class="control-label"></label>
+                <input asp-for="Mobile" class="form-control" />
+                <span asp-validation-for="Mobile" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+               <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageFile" class="control-label">Company Icon</label>
+                    <input class="form-control" asp-for="ImageFile">
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

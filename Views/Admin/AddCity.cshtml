@@ -1,0 +1,70 @@
+﻿@model JobPortalApplication.Models.City
+
+@{
+    ViewData["Title"] = "AddCity";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<h1>Add City</h1>
+
+<hr />
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-md-4" >
+
+        <form asp-action="AddCity">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CityName" class="control-label"></label>
+                <input asp-for="CityName" class="form-control" />
+                <span asp-validation-for="CityName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryId" class="control-label"></label>
+                <select asp-for="CountryId" class ="form-control" name="CountryId">
+                     <option value="">--Select Country--</option>
+
+                    @foreach(var c in ViewBag.Countries)
+                    {
+                        <option value="@c.CountryId">@c.CountryName</option>
+                    }
+                </select>            </div>
+            <div class="form-group">
+                <label asp-for="StateId" class="control-label"></label>
+ <select asp-for="StateId" class ="form-control" name="StateId">
+                     <option value="">--Select State--</option>
+
+                     @{
+
+                         /*
+                    foreach(var c in ViewBag.States)
+                    {
+                        <option value="@c.StateId">@c.StateName</option>
+                    }
+
+                    */
+                     }
+                </select>  
+    <span asp-validation-for="StateId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="ADD" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    
+}

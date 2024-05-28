@@ -1,0 +1,54 @@
+﻿@model JobPortalApplication.Models.ViewModel.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout_login.cshtml";
+}
+<html>
+    <head>
+        <style>
+            a:hover{
+                color:blue;
+            }
+
+            </style>
+    </head>
+    <body>
+        <main>
+<div class="container">
+     <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+    
+              <div class="d-flex justify-content-center py-4">
+              </div>
+
+   <div class="card  " style="margin-top:10px;">
+
+                <div class="card-body" style="width:600px; height:300px;">
+                <div class="pt-4 pb-2">
+                  </div>    
+
+            <form method="post" action="Login">
+                       <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+               
+                <h2 class="text-center  d-none d-lg-block" style="color: rgb(29, 29, 90);">Registration Successfully Done!!</h2>
+               
+                <div class="form-group">
+                <a class="btn btn-primary p-3" style="margin-left:250px; margin-top:50px; background:rgb(29, 29, 90);" asp-action="Login" asp-controller="Login" >Login</a>
+                 
+                </div>
+                
+            </form>
+        </div>
+    </div>
+      </div>
+          </div>
+        </div>
+
+      </section>
+</div>
+</main>
+</body>
+</html>

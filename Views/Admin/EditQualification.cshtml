@@ -1,0 +1,38 @@
+﻿@model JobPortalApplication.Models.Qualification
+
+@{
+    ViewData["Title"] = "EditQualification";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<h1>EditQualification</h1>
+
+<h4>Qualification</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditQualification">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="QuaId" />
+            <div class="form-group">
+                <label asp-for="QualificationName" class="control-label"></label>
+                <input asp-for="QualificationName" class="form-control" />
+                <span asp-validation-for="QualificationName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseType" class="control-label"></label>
+                <input asp-for="CourseType" class="form-control" />
+                <span asp-validation-for="CourseType" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

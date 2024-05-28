@@ -1,0 +1,54 @@
+﻿@model IEnumerable<JobPortalApplication.Models.State>
+
+@{
+    ViewData["Title"] = "ViewState";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<h1>State</h1>
+
+<p>
+ <div class="row justify-content-end">
+    <div class="col-auto">
+<form asp-action="AddState" method="get">
+    <button type="submit" class="btn btn-primary"><span class="mr-2">+</span>Add State</button>
+</form>
+</div>
+</div></p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StateName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StateName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country.CountryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a asp-action="EditState" asp-route-id="@item.StateId"><i class="fa-solid fa-pen-to-square" style="font-size: 24px;"></i></a> 
+                 <a asp-action="DeleteState" asp-route-id="@item.StateId" method="post" onsubmit="return confirm('Are you sure you want to delete this city?')"><i class="fa-solid fa-trash" style="font-size: 24px;"></i></a> 
+
+                 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

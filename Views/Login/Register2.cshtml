@@ -1,0 +1,130 @@
+﻿@model JobPortalApplication.Models.Users.UserModel
+
+@{
+    ViewData["Title"] = "Register3";
+    Layout = "~/Views/Shared/_Layout_login.cshtml";
+}
+
+<h1>Register3</h1>
+
+<h4>UserModel</h4>
+<hr />
+
+        <main>
+    <div class="container">
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-8">
+          <div class="card">
+               <div class="card-header">
+              <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="personal-tab" data-toggle="tab" href="#personal" role="tab" aria-controls="personal" aria-selected="true">Personal Info</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact Info</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="finish-tab" data-toggle="tab" href="#finish" role="tab" aria-controls="finish" aria-selected="false">Finish</a>
+                </li>
+              </ul>
+            </div>
+              <div class="card-body">
+              <div class="tab-content" id="myTabContent">
+         <div class="tab-pane fade show active" id="personal" role="tabpanel" aria-labelledby="personal-tab">
+                  <h5 class="card-title">Personal Information</h5>
+        <form asp-action="Register2" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input type="password" asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mobile" class="control-label"></label>
+                <input asp-for="Mobile" class="form-control" />
+                <span asp-validation-for="Mobile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryId" class="control-label"></label>
+               <select asp-for="CountryId" class ="form-control" name="CountryId" id="CountryId">
+
+                                              
+                                            
+                </select>               
+                <span asp-validation-for="CountryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StateId" class="control-label"></label>
+
+                
+             <select asp-for="StateId" class ="form-control" name="StateId">
+                     <option value="">--Select State--</option>
+
+       
+                </select>               
+               
+                <span asp-validation-for="StateId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CityId" class="control-label"></label>
+
+                
+             <select asp-for="CityId" class ="form-control" name="CityId">
+                     <option value="">--Select City--</option>
+
+                   
+                </select>   
+                
+                <span asp-validation-for="CityId" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="utype" class="control-label"></label>
+                <select asp-for="utype"  id="utype" class="form-control">
+                                        <option selected disabled value="">Choose...</option>
+                                        <option value="1">Getting a Job</option>
+                                        <option value="2">Hiring</option>
+                                    </select>
+              
+                <span asp-validation-for="utype" class="text-danger"></span>
+            </div>                    
+            <div class="form-group">
+                <input type="submit" value="Next" id="btnpersonaltab" class="btn btn-primary" />
+            </div>
+        </form>
+                       
+        </div>
+         
+
+        </div>
+
+                    </div>
+
+    </div>
+    </div>
+        </div>
+
+</div>
+</div>
+</div>
+</main>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+   
+     
+
+}

@@ -1,0 +1,45 @@
+﻿@model JobPortalApplication.Models.Qualification
+
+@{
+    ViewData["Title"] = "AddQualification";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<h1>AddQualification</h1>
+
+<h4>Qualification</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddQualification">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="QualificationName" class="control-label"></label>
+                <input asp-for="QualificationName" class="form-control" />
+                <span asp-validation-for="QualificationName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseType" class="control-label"></label>
+            <select asp-for="CourseType" class="form-control" >
+                    <option value="">--Select CourseType--</option>
+                    <option value="1">10th</option>
+                    <option value="2">12th</option>
+                    <option value="3">UG</option>
+                    <option value="3">PG</option>
+
+
+                    </select>                  
+                    <span asp-validation-for="CourseType" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="ADD" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

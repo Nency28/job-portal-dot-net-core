@@ -1,0 +1,160 @@
+﻿@model JobPortalApplication.Models.CompanyModel.Job
+
+@{
+    ViewData["Title"] = "PostJob";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+@if ((int)ViewBag.CompanyStatus == 1)
+{
+  
+
+        <form asp-action="PostJob" class="mt-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+              <div class="row">
+
+            <div class="form-group col-md-6">
+                <label asp-for="JobTitle" class="control-label"></label>
+                <input asp-for="JobTitle" class="form-control" />
+                <span asp-validation-for="JobTitle" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control" ></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            </div>
+            <div class="row">
+            <div class="form-group col-md-6">
+                <label asp-for="Position" class="control-label"></label>
+                <input asp-for="Position" class="form-control" />
+                <span asp-validation-for="Position" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="PositionCompleted" class="control-label"></label>
+                <input asp-for="PositionCompleted" class="form-control" />
+                <span asp-validation-for="PositionCompleted" class="text-danger"></span>
+            </div>
+            </div>
+                     <div class="row">
+
+            <div class="form-group col-md-6">
+                <label asp-for="QuaId" class="control-label">Eductaion</label>
+                  <select asp-for="QuaId"  class ="form-control" name="QuaId">
+                       <option value="">--Select Qualification--</option>
+                    <option value="10th">10th</option>
+                     <option value="12th">12th</option>
+                    <option value="PG">PG</option>
+                    <option value="UG">UG</option>
+                   </select>
+                <span asp-validation-for="QuaId" class="text-danger"></span>
+            </div>
+              <div class="form-group col-md-6">
+                <label asp-for="Course" class="control-label"></label>
+                  <select asp-for="Course" class ="form-control" name="CourseId" id="CourseId">
+
+                                              
+                                            
+                </select>  
+            </div>
+                   </div>
+                      <div class="row">
+
+            <div class="form-group col-md-6">
+                <label asp-for="Timing" class="control-label"></label>
+                <input asp-for="Timing" class="form-control" />
+                <span asp-validation-for="Timing" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+                        </div>
+                                                <div class="row">
+
+            <div class="form-group col-md-6">
+                <label asp-for="Industry" class="control-label"></label>
+                  <select asp-for="Industry" class ="form-control" name="IndustryId" id="IndustryId">
+
+                                              
+                                            
+                </select>  
+            </div>
+
+            <div class="form-group col-md-6">
+                <label asp-for="WorkMode" class="control-label"></label>
+                <input asp-for="WorkMode" class="form-control" />
+                <span asp-validation-for="WorkMode" class="text-danger"></span>
+            </div>
+                       </div>
+                                              <div class="row">
+
+            <div class="form-group col-md-6">
+                <label asp-for="WorkType" class="control-label"></label>
+                <input asp-for="WorkType" class="form-control" />
+                <span asp-validation-for="WorkType" class="text-danger"></span>
+            </div>
+                            <div class="form-group col-md-6">
+                <label asp-for="Salary" class="control-label"></label>
+                <input asp-for="Salary" class="form-control" />
+                <span asp-validation-for="Salary" class="text-danger"></span>
+            </div>
+                        </div>
+                                                            <div class="row">
+
+            <div class="form-group col-md-6">
+                <label asp-for="Gender" class="control-label"></label>
+                <input asp-for="Gender" class="form-control" />
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label asp-for="Experience" class="control-label"></label>
+                <input asp-for="Experience" class="form-control" />
+                <span asp-validation-for="Experience" class="text-danger"></span>
+            </div>
+                                    </div>
+                     <div class="row">
+
+            <div class="form-group col-md-6">
+                <label asp-for="InterviewMode" class="control-label"></label>
+                <input asp-for="InterviewMode" class="form-control" />
+                <span asp-validation-for="InterviewMode" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label asp-for="Language" class="control-label"></label>
+                <input asp-for="Language" class="form-control" />
+                <span asp-validation-for="Language" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+            </div>
+    </form>
+}
+else
+{
+     <main>
+    <div class="container">
+
+      <section class="section error-404 min-vh-100 d-flex flex-column align-items-center justify-content-center">
+       <h2>Your Company's registration is pending approval.</h2>
+      <h4 class="text-danger">Please wait for your company's registration to be approved before posting a job.</h4>      
+      <img src="~/img/approval.jpg" class="img-fluid py-5" alt="Page Not Found">
+        
+      </section>
+
+    </div>
+  </main>
+
+}
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

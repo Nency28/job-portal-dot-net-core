@@ -1,0 +1,109 @@
+﻿@model IEnumerable<JobPortalApplication.Models.Users.Userdata>
+
+@{
+    ViewData["Title"] = "ViewUser";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserModel.Email)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.UserModel.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+         
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Pincode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.course)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Skills)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserModel.Email)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.UserModel.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+           
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.Pincode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.course.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Skills)
+            </td>
+           
+            <td>
+          @if (item.Status == 1)
+         {
+             <form method="post" asp-action="ChangeStatus2" asp-route-id="@item.UId" asp-route-status="0">
+          <button type="submit" class="btn btn-warning">Active</button>
+
+             </form>
+          }
+           else
+        {
+        <form method="post" asp-action="ChangeStatus2" asp-route-id="@item.UId" asp-route-status="1">
+            <button type="submit" class="btn btn-success">Inactive</button>
+        </form>
+          }
+</td>
+           
+        </tr>
+}
+    </tbody>
+</table>

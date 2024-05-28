@@ -1,0 +1,81 @@
+﻿@model JobPortalApplication.Models.CompanyModel.Company
+
+@{
+    ViewData["Title"] = "EditCompany";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+      <div class="card mb-3 mt-3" style="max-width: 800px; margin: 0 auto;">
+
+                <div class="card-body"  style="width:800px;">
+
+                  <div class="pt-4 pb-2">
+                    <h5 class="card-title text-center pb-0 fs-4">Update Your  Profile </h5>
+                    <p class="text-center small">Change your  details for update company profile</p>
+                  </div>
+@using (Html.BeginForm("EditCompany", "Login", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CompanyId" />
+            <div class="form-group" hidden>
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+               <div class="row">
+
+            <div class="form-group col-md-6">
+                <label asp-for="CompanyName" class="control-label"></label>
+                <input asp-for="CompanyName" class="form-control" />
+                <span asp-validation-for="CompanyName" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group col-md-6">
+                <label asp-for="Website" class="control-label"></label>
+                <input asp-for="Website" class="form-control" />
+                <span asp-validation-for="Website" class="text-danger"></span>
+            </div>
+            </div>
+                 <div class="row">
+
+            <div class="form-group col-md-6">
+                <label asp-for="Location" class="control-label"></label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            </div>
+                           <div class="row">
+
+
+            <div class="form-group col-md-6">
+                <label asp-for="Mobile" class="control-label"></label>
+                <input asp-for="Mobile" class="form-control" />
+                <span asp-validation-for="Mobile" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control" ></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            </div>
+           <div class="form-group ">
+        <label for="ImageFile">Upload Image:</label>
+        <input type="file" class="form-control-file" id="ImageFile" name="ImageFile">
+    </div>
+           
+            <div class="form-group mt-3 mb-5 text-center">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        }
+ 
+        </div>
+        </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

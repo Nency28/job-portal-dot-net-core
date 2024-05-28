@@ -1,0 +1,339 @@
+﻿
+@using Microsoft.AspNetCore.Http
+
+   <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/fontawesome.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/fontawesome.min.js" rel="stylesheet">
+
+
+
+  <!-- Favicons -->
+  <link href="~/img/favicon.png" rel="icon">
+  <link href="~/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+
+  <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="~/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="~/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="~/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="~/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="~/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="~/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="~/css2/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Updated: Apr 20 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+  <style>
+      .form-control {
+  width: 85%;
+      </style>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="img/logo.png" alt="">
+        <span class="d-none d-lg-block">NiceAdmin</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+        
+    
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+     
+    </div>  <!-- End Search Bar -->
+
+                <span>
+                
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                                  <div class="navbar-float-right">
+
+                        <span class="text-dark">Welcome to </span><span class="text-dark">@User.Identity.Name</span>
+
+                        </div>
+                    }     
+                    </span>
+
+    <nav class="header-nav ms-auto">
+     
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+  
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+    <!-- End Dashboard Nav -->
+
+            @{
+                var httpContextAccessor = Context.RequestServices.GetService(typeof(IHttpContextAccessor)) as IHttpContextAccessor;
+                var session = httpContextAccessor.HttpContext.Session;
+                var utype = session.GetString("utype");
+            }
+
+            @if (utype == "3")
+            {
+                
+                  <li class="nav-item">
+        <a class="nav-link " href="index.html">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+
+                <li class="nav-heading">Pages</li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="/Admin/Master">
+                        <i class="bi bi-person"></i>
+                        <span>Master</span>
+                    </a>
+                </li>
+
+
+              
+              
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="/Admin/ViewQualification">
+                        <i class="bi bi-person"></i>
+                        <span>Qualification</span>
+                    </a>
+                </li>
+               
+               <li class="nav-item">
+                    <a class="nav-link collapsed" href="/Admin/ViewCompany">
+                  <i class="bi bi-person"></i>
+                    <span>Company Approval</span>
+              </a>
+              </li>
+               <li class="nav-item">
+                    <a class="nav-link collapsed" href="/Admin/ViewUser">
+                  <i class="bi bi-person"></i>
+                    <span>User Approval</span>
+              </a>
+              </li>
+
+                 <li class="nav-item">
+                     @if (User.Identity.IsAuthenticated)
+                    {
+
+                    <a class="nav-link collapsed" asp-action="SignOut" asp-controller="Login">
+                   <i class="bi bi-person"></i>
+                     <span>Logout</span>
+
+                  </a>
+
+                    }    
+              </li>
+              
+
+
+     }
+      else{
+                <li class="nav-item">
+              <a class="nav-link " href="/Admin/CompanyDashboard">
+             <i class="bi bi-grid"></i>
+              <span>Dashboard</span>
+                  </a>
+             </li>
+          <li class="nav-item">
+    @{
+        var companyId = Context.Session.GetInt32("CompanyId");
+        if (companyId.HasValue)
+        {
+            <a class="nav-link collapsed" href="@Url.Action("EditCompany", "Login", new { id = companyId })">
+                <i class="bi bi-person"></i>
+                <span>Update Company Profile </span>
+            </a>
+        }
+    }
+</li>
+               <li class="nav-item">
+                    <a class="nav-link collapsed" href="/PostJob/PostJob">
+                  <i class="bi bi-person"></i>
+                    <span>New Jobs</span>
+              </a>
+              </li>
+               <li class="nav-item">
+                    <a class="nav-link collapsed" href="/JobListing/ViewEmployerJob">
+                  <i class="bi bi-person"></i>
+                    <span>Job Listing</span>
+              </a>
+              </li>
+           <li class="nav-item">
+                    <a class="nav-link collapsed" href="/Admin/ChangePassword">
+                  <i class="bi bi-person"></i>
+                    <span>Change Password</span>
+              </a>
+              </li>
+                <li class="nav-item">
+                     @if (User.Identity.IsAuthenticated)
+                    {
+
+                    <a class="nav-link collapsed" asp-action="SignOut" asp-controller="Login">
+                   <i class="bi bi-person"></i>
+                     <span>Logout</span>
+
+                  </a>
+
+                    }    
+              </li>
+              
+              
+      }
+
+      
+
+  
+     
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+        
+              
+      @RenderBody()
+    
+      @RenderSection("Scripts", required: false)
+      
+           
+
+
+  </main>
+  <!-- End #main -->
+ 
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="~/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="~/vendor/chart.js/chart.umd.js"></script>
+  <script src="~/vendor/echarts/echarts.min.js"></script>
+  <script src="~/vendor/quill/quill.js"></script>
+  <script src="~/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="~/vendor/tinymce/tinymce.min.js"></script>
+  <script src="~/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+      <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+  <script src="~/js2/main.js"></script>
+    <script src="~/js2/bootstrap.min.js"></script>
+  <script src="~/js2/jQuery.js"></script>
+   <script>
+   
+    const settings = {
+      "async": true,
+  "crossDomain": true,
+  "url": "https://localhost:7155/PostJob/getIndustry",
+  "method": "POST",
+  "headers": { },
+  "data": { }
+};
+
+  $.ajax(settings).done(function (response) {
+      console.log(response);
+
+  var data = JSON.parse(response);
+
+  var html='';
+  html +=`<option value="" disabled selected>--Select Industry--</option>`  ;
+  for (var i = 0; i < data.length; i++) {
+  var element = data[i];
+  html += `<option value="${element.IndustryId}">${element.IndustryName}</option>`;
+}
+
+  $("#IndustryId").html(html);
+});
+  </script>
+
+  
+  <script>
+  /*
+   const settings1 = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://localhost:7155/PostJob/getQualification",
+      "method": "POST",
+      "headers": {},
+      "data": {}
+    };
+
+    $.ajax(settings1).done(function (response) {
+      var data = JSON.parse(response);
+
+      var html = '';
+      html += `<option value="" disabled selected>--Select Qualification--</option>`;
+      for (var i = 0; i < data.length; i++) {
+        var element = data[i];
+        html += `<option value="${element.QuaId}">${element.QualificationName}</option>`;
+      }
+
+      $("#QuaId").html(html);
+      
+    });*/
+    </script>
+
+       <script>
+    const settings5 = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://localhost:7155/PostJob/getCourse",
+      "method": "Post",
+      "headers": {}
+    };
+    
+    $.ajax(settings5).done(function (response) {
+      var data = JSON.parse(response);
+  
+      var html = '';
+      html += `<option value="" disabled selected>--Select Course--</option>`;
+      for (var i = 0; i < data.length; i++) {
+        var element = data[i];
+        html += `<option value="${element.CourseId}">${element.CourseName}</option>`;
+      }
+  
+      $("#CourseId").html(html);  
+      });
+  </script>
+
+      </body>
+
+</html>

@@ -1,0 +1,92 @@
+﻿@model IEnumerable<JobPortalApplication.Models.CompanyModel.Company>
+
+@{
+    ViewData["Title"] = "ViewCompany";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.industry)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Website)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mobile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.industry.IndustryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Website)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @if (!string.IsNullOrEmpty(item.Image))
+               {
+                 <img src="~/Image/@item.Image" alt="Company Image" style="width:100px; height:100px;" />
+               }
+            </td>
+          <td>
+    @if (item.Status == 1)
+    {
+        <form method="post" asp-action="ChangeStatus" asp-route-id="@item.CompanyId" asp-route-status="0">
+            <button type="submit" class="btn btn-warning">Active</button>
+        </form>
+    }
+    else
+    {
+        <form method="post" asp-action="ChangeStatus" asp-route-id="@item.CompanyId" asp-route-status="1">
+            <button type="submit" class="btn btn-success">Inactive</button>
+        </form>
+    }
+</td>
+           
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<JobPortalApplication.Models.Industry>
+
+@{
+    ViewData["Title"] = "ViewIndustry";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+
+<p>
+ <div class="row justify-content-end">
+    <div class="col-auto">
+<form asp-action="AddIndustry" method="get">
+    <button type="submit" class="btn btn-primary"><span class="mr-2">+</span>Add Industry</button>
+</form>
+</div>
+</div></p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IndustryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EntryDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdateDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IndustryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EntryDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateDate)
+            </td>
+             <td>
+                 <a asp-action="EditIndustry" asp-route-id="@item.IndustryId"><i class="fa-solid fa-pen-to-square" style="font-size: 24px;"></i></a> 
+                 
+                 <a asp-action="DeleteIndustry" asp-route-id="@item.IndustryId" method="post" onsubmit="return confirm('Are you sure you want to delete this Industry?')"><i class="fa-solid fa-trash" style="font-size: 24px;"></i></a> 
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

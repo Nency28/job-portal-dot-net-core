@@ -1,0 +1,236 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = JobPortalApplication
+build_property.RootNamespace = JobPortalApplication
+build_property.ProjectDir = C:\Project_JobPortal\JobPortalApplication\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Project_JobPortal\JobPortalApplication
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/About/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWJvdXRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/AddCity.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkQ2l0eS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/AddCountry.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkQ291bnRyeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/AddCourse.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkQ291cnNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/AddIndustry.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkSW5kdXN0cnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/AddQualification.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkUXVhbGlmaWNhdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/AddState.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkU3RhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ2hhbmdlUGFzc3dvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/CompanyDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ29tcGFueURhc2hib2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/EditCity.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdENpdHkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/EditCountry.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdENvdW50cnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/EditCourse.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdENvdXJzZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/EditIndustry.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdEluZHVzdHJ5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/EditQualification.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdFF1YWxpZmljYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/EditState.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdFN0YXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/Master.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTWFzdGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUmVnaXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/ViewCity.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVmlld0NpdHkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/ViewCompany.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVmlld0NvbXBhbnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/ViewCountry.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVmlld0NvdW50cnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/ViewCourse.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVmlld0NvdXJzZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/ViewEmployerCompany.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVmlld0VtcGxveWVyQ29tcGFueS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/ViewIndustry.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVmlld0luZHVzdHJ5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/ViewQualification.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVmlld1F1YWxpZmljYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/ViewState.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVmlld1N0YXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Admin/ViewUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVmlld1VzZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Contact/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Home/edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxlZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/JobListing/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iTGlzdGluZ1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/JobListing/MyJobs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iTGlzdGluZ1xNeUpvYnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/JobListing/SingleJob.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iTGlzdGluZ1xTaW5nbGVKb2IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/JobListing/ViewEmployerJob.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iTGlzdGluZ1xWaWV3RW1wbG95ZXJKb2IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/JobListing/ViewJob.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iTGlzdGluZ1xWaWV3Sm9iLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Login/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cQ2hhbmdlUGFzc3dvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Login/EditCompany.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cRWRpdENvbXBhbnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Login/Employer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cRW1wbG95ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Login/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Login/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cUmVnaXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Login/Register2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cUmVnaXN0ZXIyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Login/Success.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cU3VjY2Vzcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Login/UserM.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cVXNlck0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/PostJob/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdEpvYlxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/PostJob/PostJob.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdEpvYlxQb3N0Sm9iLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/PostJob/ViewJob.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdEpvYlxWaWV3Sm9iLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-i8np6knrhg
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Shared/_Layout_admin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRfYWRtaW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-hfpbz0mawy
+
+[C:/Project_JobPortal/JobPortalApplication/Views/Shared/_Layout_login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRfbG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-30pr18nxn5

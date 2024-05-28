@@ -1,0 +1,89 @@
+﻿@model IEnumerable<JobPortalApplication.Models.CompanyModel.Company>
+
+@{
+    ViewData["Title"] = "ViewEmployerCompany";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<h1>ViewEmployerCompany</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.industry)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Website)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mobile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.industry.IndustryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Website)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+           @if (!string.IsNullOrEmpty(item.Image))
+               {
+                 <img src="~/Image/@item.Image" alt="Company Image" style="width:100px; height:100px;" />
+               }            </td>
+           
+            <td>
+ <td>
+                    <a href="@Url.Action("EditCompany", "Login", new { id = item.CompanyId })" class="btn btn-primary">Edit</a>
+                </td> 
+                 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
