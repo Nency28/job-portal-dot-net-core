@@ -17,8 +17,8 @@
     <link rel="stylesheet" href="fonts/line-icons/style.css">
     <link rel="stylesheet" href="~/css/owl.carousel.min.css">
     <link rel="stylesheet" href="~/css/animate.min.css">
+     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- MAIN CSS -->
     <link rel="stylesheet" href="~/css/style.css">    
   </head>
   <body id="top">
@@ -43,53 +43,55 @@
     
 
     <!-- NAVBAR -->
-    <header class="site-navbar mt-3">
-      <div class="container-fluid">
+   <header class="site-navbar mt-3">
+    <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="site-logo col-6"><a  href="index.html">JobBoard</a></div>
+            <div class="site-logo col-6"><a href="index.html">JobBoard</a></div>
 
-          <nav class="mx-auto site-navigation">
-            <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-              <li><a asp-controller="Home" asp-action="Index" class="nav-link active">Home</a></li>
-              <li><a asp-controller="About" asp-action="Index">About</a></li>
-              <li class="has-children">
-                <a asp-controller="JobListing" asp-action="ViewJob">Job Listings</a>
-               
-              </li>
-             
-              <li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
-                        @if (User.Identity.IsAuthenticated)
-                            {
-                                <li>
-                                  <div class="navbar-float-right">
-                        <span class="text-light">Welcome to </span><span class="text-light">@User.Identity.Name</span>
-                        <a class="btn btn-light btn-sm" asp-action="SignOut" asp-controller="Login">Logout</a>
-                        
-                                   </div>
-                               </li>
-                
+            <nav class="mx-auto site-navigation">
+                <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
+                    <li><a asp-controller="Home" asp-action="Index" class="nav-link active">Home</a></li>
+                    <li><a asp-controller="About" asp-action="Index">About</a></li>
+                    <li class="has-children">
+                        <a asp-controller="JobListing" asp-action="getJob">Job Listings</a>
+                    </li>
+                    <li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="right-cta-menu text-right d-flex align-items-center col-6">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="ml-auto d-flex align-items-center">
+                        <span><i class="bi bi-person"></i></span><span class="text-light"> @User.Identity.Name</span>
+                        <a class="btn btn-light  ml-3" asp-action="SignOut" asp-controller="Login">Logout</a>
 
-              <a  asp-controller="JobListing" asp-action="MyJobs" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>My Job</a>
-                    }     
-
-            </ul>
-          </nav>
-                    @if (!User.Identity.IsAuthenticated)
-                    {
-
-
-                        <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
-                            <div class="ml-auto">
-              <a  asp-controller="PostJob" asp-action="Index" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>Post a Job</a>
-              <a href="/Login/Login" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Log In</a>
+                        <div class="dropdown">
+                            <button id="dropdownMenuButton1" class="btn btn-primary dropdown-toggle ml-3" aria-haspopup="true" aria-expanded="false">
+                                Profile
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a asp-controller="JobListing" asp-action="MyJobs" class="dropdown-item">Saved Job</a></li>
+                                <li><a asp-controller="JobListing" asp-action="AppliedJobUser" class="dropdown-item">Applied Job</a></li>
+                                <li><a asp-controller="JobListing" asp-action="UserInterviews" class="dropdown-item">Notifications</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="ml-auto">
+                        <a href="/Login/Register"  class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>Register</a>
+                        <a href="/Login/Login" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Log In</a>
+                    </div>
+                }
+                <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
             </div>
-            <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
-          </div>
-          }
         </div>
-      </div>
-    </header>
-      <div class="">
+    </div>
+</header>
+
+   <div class="">
       @RenderBody()
       @RenderSection("Scripts", required: false)
 
@@ -171,6 +173,25 @@
     <script src="~/js/bootstrap-select.min.js"></script>
     
     <script src="~/js/custom.js"></script>
+   
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+        <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var dropdownMenuButton = document.getElementById('dropdownMenuButton1');
+        var dropdownMenu = dropdownMenuButton.nextElementSibling;
+
+        dropdownMenuButton.addEventListener('click', function() {
+            dropdownMenu.classList.toggle('show');
+        });
+
+        document.addEventListener('click', function(event) {
+            if (!dropdownMenu.contains(event.target) && !dropdownMenuButton.contains(event.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+    });
+</script>
+
      <script>
         $(document).ready(function () {
             $('#save-job-form').submit(function (event) {
@@ -188,7 +209,29 @@
                 });
             });
         });
+
+         
+    const settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://localhost:7155/PostJob/getIndustry",
+                "method": "POST",
+                "headers": {},
+                "data": {}
+            };
+
+            $.ajax(settings).done(function (response) {
+                var data = JSON.parse(response);
+                var html = '';
+                html += `<option value="" disabled selected>--Select Industry--</option>`;
+                for (var i = 0; i < data.length; i++) {
+                    var element = data[i];
+                    html += `<option value="${element.IndustryId}">${element.IndustryName}</option>`;
+                }
+                $("#Industry").html(html);
+            });
     </script>
+
      
   </body>
 </html>

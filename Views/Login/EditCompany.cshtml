@@ -66,10 +66,13 @@
            <div class="form-group ">
         <label for="ImageFile">Upload Image:</label>
         <input type="file" class="form-control-file" id="ImageFile" name="ImageFile">
+                <img src="@Url.Content("~/Image/" + Model.Image)" alt="Current Image" id="preview" style="max-width: 200px; display: block; margin-top: 10px;">
+
     </div>
            
             <div class="form-group mt-3 mb-5 text-center">
                 <input type="submit" value="Save" class="btn btn-primary" />
+
             </div>
         }
  
@@ -78,4 +81,9 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+     <script>        
+        ImageFile.addEventListener("change",(e)=>{
+            preview.src=URL.createObjectURL(e.target.files[0])
+        })
+    </script>
 }

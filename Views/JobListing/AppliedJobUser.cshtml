@@ -1,0 +1,94 @@
+﻿@model IEnumerable<JobPortalApplication.Models.CompanyModel.JobApplication>
+
+@{
+    ViewData["Title"] = "AppliedJobUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('/images/hero_1.jpg');" id="home-section">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <div class="custom-breadcrumbs">
+            </div>
+          </div>
+        </div>
+      </div>
+             
+    </section>
+
+    <section class="site-section" id="next">
+      <div class="container">
+
+        <div class="row mb-5 justify-content-center">
+          <div class="col-md-7 text-center">
+
+            <h2 class="section-title mb-2">Applied Job</h2>
+          </div>
+        </div>
+        @foreach (var item in Model) {
+        <ul class="job-listings mb-5">
+
+          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+            <a asp-action="SingleJob2" asp-route-id="@item.Job.JobId"></a>
+            <div class="job-listing-logo">
+
+                    @if (item.Job.Company != null && !string.IsNullOrEmpty(item.Job.Company.Image))
+               {
+                 <img src="~/Image/@item.Job.Company.Image" alt="Company Image" style="width:100px; height:100px;" />
+               }            </div>
+
+            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                <h2>@Html.DisplayFor(modelItem => item.Job.JobTitle)</h2>
+                                        @if (item.Job.Company != null)
+                            {
+                                <strong> @Html.DisplayFor(modelItem => item.Job.Company.CompanyName)</strong>
+                            }
+                        </div>
+              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                <span class="icon-room"></span>   @Html.DisplayFor(modelItem => item.Job.Address)
+
+              </div>
+              <div class="job-listing-meta">
+                <span class="badge badge-primary">@Html.DisplayFor(modelItem => item.Job.WorkType)</span>
+                  
+
+              </div>
+               <div>
+            @if (item.ApplicationStatus == 1)
+            {
+              <button class="btn btn-success btn-sm">Approved</button>
+            }
+            else if (item.ApplicationStatus == 0)
+            {
+              <button class="btn btn-danger btn-sm" >Rejected</button>
+            }
+            else
+            {
+              <button class="btn btn-warning btn-sm">Pending</button>
+            }
+          </div>
+              
+
+              
+            </div>
+            
+          </li>
+        
+         
+         
+        
+          
+
+          
+        </ul>
+                 
+
+        }
+
+      
+
+      </div>
+    </section>

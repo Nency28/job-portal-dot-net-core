@@ -8,7 +8,7 @@ namespace JobPortalApplication.Models
         [Key]
         public int IndustryId { get; set; }
         public string IndustryName { get; set; }
-        public int Status { get; set; }
+        public int? Status { get; set; }
         public DateTime? EntryDate { get; set; }
         public DateTime? UpdateDate { get; set; }
     }

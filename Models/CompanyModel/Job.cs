@@ -23,18 +23,22 @@ namespace JobPortalApplication.Models.CompanyModel
         public int? Position { get; set; }
         public int? PositionCompleted { get; set; }
 
-        public string? QuaId { get; set; }
-        public int? Course { get; set; }
+        public string?  QuaId { get; set; }
+        public string? Course { get; set; }
 
         public string? Timing { get; set; }
         public string? Address { get; set; }
-        public int? Industry { get; set; }
+        public string? Industry { get; set; }
     
         public  string? WorkMode { get; set; }
         public string? WorkType { get; set; }
         public string? Salary { get; set; }
 
+        [DataType(DataType.Date)]
+
         public DateTime? EntryDate { get; set; }
+        [DataType(DataType.Date)]
+
         public DateTime? UpdateDate { get; set; }
 
         public string? Gender { get; set; }

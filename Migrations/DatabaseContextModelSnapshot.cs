@@ -104,6 +104,52 @@ namespace JobPortalApplication.Migrations
                     b.ToTable("company");
                 });
 
+            modelBuilder.Entity("JobPortalApplication.Models.CompanyModel.Interview", b =>
+                {
+                    b.Property<int>("InterviewId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InterviewId"), 1L, 1);
+
+                    b.Property<DateTime?>("EntryDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("InterviewDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("JobId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Remark")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<TimeSpan?>("Time")
+                        .HasColumnType("time");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UserId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.HasKey("InterviewId");
+
+                    b.HasIndex("JobId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("interview");
+                });
+
             modelBuilder.Entity("JobPortalApplication.Models.CompanyModel.Job", b =>
                 {
                     b.Property<int>("JobId")
@@ -119,8 +165,8 @@ namespace JobPortalApplication.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int?>("Course")
-                        .HasColumnType("int");
+                    b.Property<string>("Course")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -134,8 +180,8 @@ namespace JobPortalApplication.Migrations
                     b.Property<string>("Gender")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Industry")
-                        .HasColumnType("int");
+                    b.Property<string>("Industry")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("InterviewMode")
                         .HasColumnType("nvarchar(max)");
@@ -270,7 +316,7 @@ namespace JobPortalApplication.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Status")
+                    b.Property<int?>("Status")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateDate")
@@ -374,6 +420,9 @@ namespace JobPortalApplication.Migrations
                     b.Property<int>("Pincode")
                         .HasColumnType("int");
 
+                    b.Property<string>("Qualification")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Resume")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -475,6 +524,25 @@ namespace JobPortalApplication.Migrations
                         .IsRequired();
 
                     b.Navigation("industry");
+                });
+
+            modelBuilder.Entity("JobPortalApplication.Models.CompanyModel.Interview", b =>
+                {
+                    b.HasOne("JobPortalApplication.Models.CompanyModel.Job", "Job")
+                        .WithMany()
+                        .HasForeignKey("JobId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("JobPortalApplication.Models.Users.UserModel", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Job");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("JobPortalApplication.Models.CompanyModel.Job", b =>

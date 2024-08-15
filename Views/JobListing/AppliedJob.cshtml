@@ -1,0 +1,92 @@
+﻿@model IEnumerable<JobPortalApplication.Models.CompanyModel.JobApplication>
+
+@{
+    ViewData["Title"] = "AppliedJob";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+@if (ViewData["ErrorMessage"] != null)
+{
+    <div class="alert alert-warning">
+        @ViewData["ErrorMessage"]
+    </div>
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Job)
+            </th>
+            <th>
+                Email
+            </th>
+              <th>
+                  UserName
+            </th>
+             <th>
+                 Phone
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.EntryDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdateDate)
+            </th>
+             <th>
+               Detail
+            </th>
+             <th>
+                 Action
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Job.JobId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Email)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.User.Name)
+            </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.User.Mobile)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.EntryDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateDate)
+            </td>
+           <td>
+                <a asp-action="UserDetails" asp-route-userId="@item.UserId">Details</a>
+            </td>
+             <td>
+    @if (item.ApplicationStatus == 1)
+    {
+        <form method="post" asp-action="ChangeStatus" asp-route-id="@item.ApplicationId" asp-route-status="0">
+            <button type="submit" class="btn btn-success">Approved</button>
+        </form>
+    }
+    else
+    {
+        <form method="post" asp-action="ChangeStatus" asp-route-id="@item.ApplicationId" asp-route-status="1">
+            <button type="submit" class="btn btn-warning">Rejected</button>
+        </form>
+    }
+</td>
+ <td>
+                <a href="@Url.Action("ScheduleInterview", "JobListing", new { userId = item.UserId, jobId = item.Job.JobId })" class="btn btn-primary">Schedule Interview</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

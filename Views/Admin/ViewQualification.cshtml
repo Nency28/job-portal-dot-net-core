@@ -37,11 +37,22 @@
             </td>
             <td>
                  <a asp-action="EditQualification" asp-route-id="@item.QuaId"><i class="fa-solid fa-pen-to-square" style="font-size: 24px;"></i></a> 
+                  <a href="#" onclick="confirmDelete('@item.QuaId')"><i class="fa-solid fa-trash" style="font-size: 24px;"></i></a>
+
                  
-                 <a asp-action="DeleteQualification" asp-route-id="@item.QuaId" method="post" onsubmit="return confirm('Are you sure you want to delete this city?')"><i class="fa-solid fa-trash" style="font-size: 24px;"></i></a> 
 
             </td>
         </tr>
+
 }
     </tbody>
 </table>
+@section Scripts {
+    <script>
+        function confirmDelete(id) {
+            if (confirm("Are you sure you want to delete this qualification?")) {
+                window.location.href = '@Url.Action("DeleteQualification", "Admin")/' + id;
+            }
+        }
+    </script>
+}

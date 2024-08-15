@@ -24,13 +24,68 @@ namespace JobPortalApplication.Controllers
 
         public IActionResult Index()
         {
-           
+            
 
             return View();
+
+
         }
-        public IActionResult CompanyDashboard()
+        public IActionResult AdminDashboard()
         {
 
+            int totalUsers = _context.userdata.Count();
+            ViewBag.TotalUsers = totalUsers;
+
+            int totalCompany = _context.company.Count();
+            ViewBag.TotalCompany = totalCompany;
+
+            int totalJob = _context.job.Count();
+            ViewBag.TotalJob = totalJob;
+
+            int appliedJob = _context.jobapplication.Count();
+            ViewBag.TotalAppliedJob = appliedJob;
+
+            int totalInterview = _context.interview.Count();
+            ViewBag.TotalInterview = totalInterview;
+
+
+
+            return View();
+
+
+        }
+        [Authorize]
+        public async Task<IActionResult> CompanyDashboard()
+        {
+            int? employerUserId = HttpContext.Session.GetInt32("UserId");
+
+            if (!employerUserId.HasValue)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            // Fetch jobs posted by this employer
+            var employerJobs = await _context.job
+                .Where(j => j.Company.UserId == employerUserId.Value)
+                .Select(j => j.JobId)
+                .ToListAsync();
+
+            var totalJobsCount = employerJobs.Count;
+
+            if (!employerJobs.Any())
+            {
+                ViewBag.ErrorMessage = "No jobs found for the current employer.";
+                ViewBag.AppliedJobCount = 0; 
+                ViewBag.TotalJobsCount = 0; 
+                return View();
+            }
+
+            var appliedJobCount = await _context.jobapplication
+                .Where(j => j.EntryStatus == 2 && j.JobId.HasValue && employerJobs.Contains(j.JobId.Value))
+                .CountAsync();
+
+            ViewBag.AppliedJobCount = appliedJobCount;
+            ViewBag.TotalJobsCount = totalJobsCount;
 
             return View();
         }
@@ -298,6 +353,62 @@ namespace JobPortalApplication.Controllers
               var cities = _context.city.Include(c => c.Country).Include(c => c.State).ToList();
               return View(cities);
         }
+        /*
+        public IActionResult EditCity(int id)
+        {
+            var city = _context.city.Find(id);
+            if (city == null)
+            {
+                return NotFound();
+            }
+            ViewBag.Countries = _context.country.ToList();
+            ViewBag.States = _context.state.ToList();
+            return View(city);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditCity(int id, City city)
+        {
+            if (id != city.CityId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(city);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(ViewCity));
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!_context.city.Any(e => e.CityId == id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            }
+            else
+            {
+                // Log the ModelState errors
+                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
+            }
+
+            ViewBag.Countries = _context.country.ToList();
+            ViewBag.States = _context.state.ToList();
+            return View(city);
+        } */
+
 
         public IActionResult EditCity(int id)
         {
@@ -317,22 +428,53 @@ namespace JobPortalApplication.Controllers
         {
             if (id != city.CityId)
             {
-
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
-                _context.Update(city);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(ViewCity));
+                try
+                {
+                    _context.Update(city);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(ViewCity));
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!CityExists(city.CityId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Log the error
+                    Console.WriteLine("Error updating city: " + ex.Message);
+                    throw;
+                }
+            }
+            else
+            {
+                // Log the ModelState errors
+                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    Console.WriteLine("ModelState Error: " + error.ErrorMessage);
+                }
             }
 
             ViewBag.Countries = _context.country.ToList();
             ViewBag.States = _context.state.ToList();
             return View(city);
         }
-        /*
+
+        private bool CityExists(int id)
+        {
+            return _context.city.Any(e => e.CityId == id);
+        } /* 
         public IActionResult DeleteCity(int? id)
         {
             if (id == null)
@@ -725,12 +867,29 @@ namespace JobPortalApplication.Controllers
             {
                 return NotFound("User not found.");
             }
+            var company = await _context.company
+                               .Include(c => c.industry)
+                               .FirstOrDefaultAsync(c => c.UserId == user.UserId);
+
+            if (company != null)
+            {
+                HttpContext.Session.SetString("CompanyName", company.CompanyName);
+                HttpContext.Session.SetString("CompanyLogo", company.Image);
+
+                Console.WriteLine("CompanyName: " + company.CompanyName);
+                Console.WriteLine("CompanyLogo: " + company.Image);
+            }
+            else
+            {
+                HttpContext.Session.Remove("CompanyName");
+                HttpContext.Session.Remove("CompanyLogo");
+            }
 
             var companies = await _context.company
                                           .Include(c => c.industry)
                                           .Where(c => c.UserId == user.UserId)
                                           .ToListAsync();
-
+            
             return View(companies);
         }
         /* -- for display company list in admin side (Approval) ---*/

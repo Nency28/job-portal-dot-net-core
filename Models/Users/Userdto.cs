@@ -33,6 +33,7 @@ namespace JobPortalApplication.Models.Users
         public string Hometown { get; set; }
         [Required(ErrorMessage = "Pincode is required")]
         public int Pincode { get; set; }
+        public string Qualification { get; set; }
 
         public int? Course { get; set; }
         public string? Duration { get; set; }

@@ -11,7 +11,8 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="EditCity">
+        <form asp-action="EditCity" >
+            @Html.AntiForgeryToken()
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CityId" />
             <div class="form-group">
@@ -21,24 +22,25 @@
             </div>
             <div class="form-group">
                 <label asp-for="CountryId" class="control-label"></label>
-        <select asp-for="CountryId" class="form-control" id="countrySelect">
-        <option value="">--Select Country--</option>
-        @foreach (var country in ViewBag.Countries)
-        {
-            <option value="@country.CountryId" data-countryid="@country.CountryId">@country.CountryName</option>
-        }
-    </select>
+                <select asp-for="CountryId" class="form-control" id="countrySelect">
+                    <option value="">--Select Country--</option>
+                    @foreach (var country in ViewBag.Countries)
+                    {
+                        <option value="@country.CountryId">@country.CountryName</option>
+                    }
+                </select>
                 <span asp-validation-for="CountryId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="StateId" class="control-label"></label>
-  <select asp-for="StateId" class="form-control" id="stateSelect">
-        <option value="">--Select State--</option>
-        @foreach (var state in ViewBag.States)
-        {
-            <option value="@state.StateId" data-stateid="@state.StateId">@state.StateName</option>
-        }
-    </select>                <span asp-validation-for="StateId" class="text-danger"></span>
+                <select asp-for="StateId" class="form-control" id="stateSelect">
+                    <option value="">--Select State--</option>
+                    @foreach (var state in ViewBag.States)
+                    {
+                        <option value="@state.StateId">@state.StateName</option>
+                    }
+                </select>
+                <span asp-validation-for="StateId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
@@ -51,8 +53,6 @@
         </form>
     </div>
 </div>
-
-
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

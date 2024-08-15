@@ -279,6 +279,19 @@
       }, false)
     })
 
+    document.addEventListener('DOMContentLoaded', function () {
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                navLinks.forEach(otherLink => {
+                    otherLink.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+    });
+
   /**
    * Initiate Datatables
    */
@@ -370,7 +383,7 @@
 
     /* ---- Industry ----*/
     
-        const settings = {
+        const settings2 = {
             "async": true,
         "crossDomain": true,
         "url": "https://localhost:7155/PostJob/getIndustry",
@@ -379,7 +392,7 @@
         "data": { }
   };
 
-        $.ajax(settings).done(function (response) {
+        $.ajax(settings2).done(function (response) {
             console.log(response);
 
         var data = JSON.parse(response);
@@ -396,6 +409,7 @@
 
 
 
+   
 
   /**
    * Autoresize echart charts

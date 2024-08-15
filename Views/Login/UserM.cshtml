@@ -30,7 +30,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Dob" class="control-label"></label>
-                <input asp-for="Dob" class="form-control" type="date" />
+                <input asp-for="Dob" class="form-control" type="date" autocomplete="off"/>
                 <span asp-validation-for="Dob" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -58,7 +58,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Address" class="control-label"></label>
-                <input asp-for="Address" class="form-control" />
+                <input asp-for="Address" class="form-control" autocomplete="off"/>
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -74,13 +74,26 @@
             </div>
             <div class="form-group">
                 <label asp-for="Hometown" class="control-label"></label>
-                <input asp-for="Hometown" class="form-control" />
+                <input asp-for="Hometown" class="form-control" autocomplete="off"/>
                 <span asp-validation-for="Hometown" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Pincode" class="control-label"></label>
-                <input asp-for="Pincode" class="form-control" />
+                <input asp-for="Pincode" class="form-control" autocomplete="off"/>
                 <span asp-validation-for="Pincode" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="Qualification" class="control-label">Eductaion</label>
+
+                 <select asp-for="Qualification" class=" form-control" >
+                       <option value="">--Select Qualification--</option>
+
+                    <option value="10th">10th</option>
+                    <option value="12th">12th</option>
+                    <option value="PostGraduate">PostGraduate</option>
+                    <option value="UnderGraduate">UnderGraduate</option>
+                 </select>
+                <span asp-validation-for="Qualification" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Course" class="control-label"></label>
@@ -103,12 +116,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="Grade" class="control-label">Grade/Percentage</label>
-                <input asp-for="Grade" class="form-control" />
+                <input asp-for="Grade" class="form-control" autocomplete="off"/>
                 <span asp-validation-for="Grade" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Skills" class="control-label"></label>
-                <input asp-for="Skills" class="form-control" />
+                <input asp-for="Skills" class="form-control" autocomplete="off"/>
                 <span asp-validation-for="Skills" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -128,11 +141,3 @@
 </section>
 </div>
 
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

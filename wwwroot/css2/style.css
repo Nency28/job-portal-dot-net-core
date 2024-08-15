@@ -595,6 +595,7 @@ h6 {
   background-color: #f6f9ff;
 }
 
+
 /*--------------------------------------------------------------
 # Sidebar
 --------------------------------------------------------------*/
@@ -994,7 +995,10 @@ h6 {
   white-space: nowrap;
   color: #666;
 }
-
+#navbar .scrollto.active {
+    color: #007bff; /* Change this to your desired active state text color */
+    font-weight: bold; /* Change this to your desired active state font weight */
+}
 /*--------------------------------------------------------------
 # Profie Page
 --------------------------------------------------------------*/

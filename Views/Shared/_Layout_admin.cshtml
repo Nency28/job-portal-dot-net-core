@@ -1,5 +1,13 @@
 ﻿
+
 @using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var companyName = HttpContextAccessor.HttpContext.Session.GetString("CompanyName");
+    var companyLogo = HttpContextAccessor.HttpContext.Session.GetString("CompanyLogo");
+    
+}
 
    <!DOCTYPE html>
 <html lang="en">
@@ -35,9 +43,16 @@
   <link href="~/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="~/vendor/simple-datatables/style.css" rel="stylesheet">
 
+
   <!-- Template Main CSS File -->
   <link href="~/css2/style.css" rel="stylesheet">
-
+  
+  <style>
+      #navbar .scrollto.active {
+  color: #007bff; /* Change this to your desired active state text color */
+  font-weight: bold; /* Change this to your desired active state font weight */
+}
+  </style>
   <!-- =======================================================
   * Template Name: NiceAdmin
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -50,29 +65,33 @@
       .form-control {
   width: 85%;
       </style>
+      
 </head>
 
 <body>
 
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
-
-    <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <img src="img/logo.png" alt="">
-        <span class="d-none d-lg-block">NiceAdmin</span>
-      </a>
+  
+        <div class="d-flex align-items-center justify-content-between">
+      <a href="" class="logo d-flex align-items-center">
+         @if (!string.IsNullOrEmpty(companyLogo))
+        {
+            <img src="~/Image/@companyLogo" alt="Company Logo" class="company-logo" style="width: 50px; height: 50px;" />
+        }
+        <span class="d-none d-lg-block">@(!string.IsNullOrEmpty(companyName) ? companyName : "NiceAdmin")</span>
+    </a>
+      
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
-        
+            
     
     <div class="search-bar">
       <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
       </form>
      
     </div>  <!-- End Search Bar -->
+
 
                 <span>
                 
@@ -80,7 +99,7 @@
                     {
                                   <div class="navbar-float-right">
 
-                        <span class="text-dark">Welcome to </span><span class="text-dark">@User.Identity.Name</span>
+                        <span class="text-dark"><i class="bi bi-person"></i></span><span class="text-dark">@User.Identity.Name</span>
 
                         </div>
                     }     
@@ -108,18 +127,18 @@
             @if (utype == "3")
             {
                 
-                  <li class="nav-item">
-        <a class="nav-link " href="index.html">
-          <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
-        </a>
-      </li>
+                <li class="nav-item">
+              <a class="nav-link " href="/Admin/AdminDashboard">
+             <i class="bi bi-grid"></i>
+              <span>Dashboard</span>
+                  </a>
+             </li>
 
                 <li class="nav-heading">Pages</li>
 
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="/Admin/Master">
-                        <i class="bi bi-person"></i>
+                 <i class="bi bi-grid-3x3-gap-fill"></i>
                         <span>Master</span>
                     </a>
                 </li>
@@ -127,32 +146,22 @@
 
               
               
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="/Admin/ViewQualification">
-                        <i class="bi bi-person"></i>
-                        <span>Qualification</span>
-                    </a>
-                </li>
+                
                
                <li class="nav-item">
                     <a class="nav-link collapsed" href="/Admin/ViewCompany">
-                  <i class="bi bi-person"></i>
+                  <i class="bi bi-person-fill-check"></i>
                     <span>Company Approval</span>
               </a>
               </li>
-               <li class="nav-item">
-                    <a class="nav-link collapsed" href="/Admin/ViewUser">
-                  <i class="bi bi-person"></i>
-                    <span>User Approval</span>
-              </a>
-              </li>
+               
 
                  <li class="nav-item">
                      @if (User.Identity.IsAuthenticated)
                     {
 
                     <a class="nav-link collapsed" asp-action="SignOut" asp-controller="Login">
-                   <i class="bi bi-person"></i>
+                     <i class="bi bi-box-arrow-right"></i>
                      <span>Logout</span>
 
                   </a>
@@ -176,7 +185,7 @@
         if (companyId.HasValue)
         {
             <a class="nav-link collapsed" href="@Url.Action("EditCompany", "Login", new { id = companyId })">
-                <i class="bi bi-person"></i>
+                  <i class="bi bi-building-fill-up"></i>
                 <span>Update Company Profile </span>
             </a>
         }
@@ -184,19 +193,25 @@
 </li>
                <li class="nav-item">
                     <a class="nav-link collapsed" href="/PostJob/PostJob">
-                  <i class="bi bi-person"></i>
+              <i class="bi bi-plus-square-fill"></i>
                     <span>New Jobs</span>
               </a>
               </li>
                <li class="nav-item">
                     <a class="nav-link collapsed" href="/JobListing/ViewEmployerJob">
-                  <i class="bi bi-person"></i>
+                <i class="bi bi-list-task"></i>
                     <span>Job Listing</span>
+              </a>
+              </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="/JobListing/AppliedJob">
+                  <i class="bi bi-people-fill"></i>
+                 <span>Applied Candidate</span>
               </a>
               </li>
            <li class="nav-item">
                     <a class="nav-link collapsed" href="/Admin/ChangePassword">
-                  <i class="bi bi-person"></i>
+             <i class="bi bi-person-fill-lock"></i>
                     <span>Change Password</span>
               </a>
               </li>
@@ -205,7 +220,7 @@
                     {
 
                     <a class="nav-link collapsed" asp-action="SignOut" asp-controller="Login">
-                   <i class="bi bi-person"></i>
+                     <i class="bi bi-box-arrow-right"></i>
                      <span>Logout</span>
 
                   </a>
@@ -240,6 +255,10 @@
  
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+   
+  <!-- Template Main JS File -->
+      <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
   <!-- Vendor JS Files -->
   <script src="~/vendor/apexcharts/apexcharts.min.js"></script>
@@ -251,72 +270,46 @@
   <script src="~/vendor/tinymce/tinymce.min.js"></script>
   <script src="~/vendor/php-email-form/validate.js"></script>
 
-  <!-- Template Main JS File -->
-      <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
+ 
   <script src="~/js2/main.js"></script>
     <script src="~/js2/bootstrap.min.js"></script>
   <script src="~/js2/jQuery.js"></script>
+
+
+
+
+
    <script>
-   
+
+    
     const settings = {
-      "async": true,
-  "crossDomain": true,
-  "url": "https://localhost:7155/PostJob/getIndustry",
-  "method": "POST",
-  "headers": { },
-  "data": { }
-};
+                "async": true,
+                "crossDomain": true,
+                "url": "https://localhost:7155/PostJob/getIndustry",
+                "method": "POST",
+                "headers": {},
+                "data": {}
+            };
 
-  $.ajax(settings).done(function (response) {
-      console.log(response);
+            $.ajax(settings).done(function (response) {
+                var data = JSON.parse(response);
+                var html = '';
+                html += `<option value="" disabled selected>--Select Industry--</option>`;
+                for (var i = 0; i < data.length; i++) {
+                    var element = data[i];
+                    html += `<option value="${element.IndustryId}">${element.IndustryName}</option>`;
+                }
+                $("#Industry").html(html);
+            });
 
-  var data = JSON.parse(response);
 
-  var html='';
-  html +=`<option value="" disabled selected>--Select Industry--</option>`  ;
-  for (var i = 0; i < data.length; i++) {
-  var element = data[i];
-  html += `<option value="${element.IndustryId}">${element.IndustryName}</option>`;
-}
 
-  $("#IndustryId").html(html);
-});
-  </script>
-
-  
-  <script>
-  /*
-   const settings1 = {
-      "async": true,
-      "crossDomain": true,
-      "url": "https://localhost:7155/PostJob/getQualification",
-      "method": "POST",
-      "headers": {},
-      "data": {}
-    };
-
-    $.ajax(settings1).done(function (response) {
-      var data = JSON.parse(response);
-
-      var html = '';
-      html += `<option value="" disabled selected>--Select Qualification--</option>`;
-      for (var i = 0; i < data.length; i++) {
-        var element = data[i];
-        html += `<option value="${element.QuaId}">${element.QualificationName}</option>`;
-      }
-
-      $("#QuaId").html(html);
-      
-    });*/
-    </script>
-
-       <script>
     const settings5 = {
       "async": true,
       "crossDomain": true,
       "url": "https://localhost:7155/PostJob/getCourse",
-      "method": "Post",
+      "method": "POST",
       "headers": {}
     };
     
@@ -328,11 +321,213 @@
       for (var i = 0; i < data.length; i++) {
         var element = data[i];
         html += `<option value="${element.CourseId}">${element.CourseName}</option>`;
+
       }
   
-      $("#CourseId").html(html);  
+      $("#Course").html(html);  
       });
-  </script>
+
+
+  
+       var navlink=document.getElementsByClassName("nav-link");
+
+    var pangename=window.location.pathname.split("/")[2];
+
+
+    for(var i=0;i<navlink.length;i++){
+        var element=navlink[i];
+        var link=element.getAttribute("href")
+        var linkArray = link.split("/");
+        var currentPage=linkArray[2];
+
+        console.log(`pangename = ${pangename}`)
+        console.log(`currentPage = ${currentPage}`)
+
+        if(pangename==currentPage){
+            console.log("Match")
+            element.classList.remove("collapsed")
+        }else{
+            element.classList.add("collapsed")
+        }
+
+    }
+
+</script>
+<script>
+
+
+        getJobchart();
+
+        function getJobchart() {
+            const settings5 = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://localhost:7155/JobListing/GetJobs",
+                "method": "POST",
+                "headers": {}
+            };
+
+            $.ajax(settings5).done(function (response) {
+
+                // Line Chart
+                var options = {
+                    series: response.series,
+                    chart: {
+                        height: 350,
+                        type: 'line',
+                        zoom: {
+                            enabled: false
+                        }
+                    },
+                    dataLabels: {
+                        enabled: false
+                    },
+                    stroke: {
+                        curve: 'straight'
+                    },
+                    title: {
+                        text: 'Jobsapplicants by Month',
+                        align: 'left'
+                    },
+                    grid: {
+                        row: {
+                            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                            opacity: 0.5
+                        },
+                    },
+                    xaxis: {
+                        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+                    }
+                };
+
+                var chart = new ApexCharts(document.querySelector("#chart"), options);
+                chart.render();
+
+
+
+                var options = {
+                    series: response.series,
+                    chart: {
+                        type: 'bar',
+                        height: 350
+                    },
+                    plotOptions: {
+                        bar: {
+                            horizontal: false,
+                            columnWidth: '55%',
+                            endingShape: 'rounded'
+                        },
+                    },
+                    dataLabels: {
+                        enabled: false
+                    },
+                    stroke: {
+                        show: true,
+                        width: 2,
+                        colors: ['transparent']
+                    },
+                    xaxis: {
+                        categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+                    },
+                    yaxis: {
+                        title: {
+                            text: ''
+                        }
+                    },
+                    fill: {
+                        opacity: 1
+                    },
+                    tooltip: {
+                        y: {
+                            formatter: function (val) {
+                                return "" + val + " "
+                            }
+                        }
+                    }
+                };
+
+                var chart = new ApexCharts(document.querySelector("#barchart"), options);
+                chart.render();
+
+
+
+            const seriesNames = response.series.map(series => series.name);
+
+            // Extract sums of all data
+            const seriesSums = response.series.map(series => series.data.reduce((sum, value) => sum + value, 0));
+
+
+            var options = {
+                series: seriesSums,
+                chart: {
+                width: 380,
+                type: 'pie',
+              },
+              labels: seriesNames,
+              responsive: [{
+                breakpoint: 480,
+                options: {
+                  chart: {
+                    width: 200
+                  },
+                  legend: {
+                    position: 'bottom'
+                  }
+                }
+              }]
+              };
+      
+              var chart = new ApexCharts(document.querySelector("#piechart"), options);
+              chart.render();
+
+        });
+
+        }
+    </script>
+    <script>
+            // Call the function to fetch data and render pie chart
+            getUserchart();
+    
+            function getUserchart() {
+                const settings = {
+                    "async": true,
+                    "crossDomain": true,
+                    "url": "https://localhost:7155/JobListing/GetUserData",
+                    "method": "POST",
+                    "headers": {}
+                };
+    
+                $.ajax(settings).done(function (response) {
+                    // Extract the series data from the response
+                    var seriesData = response.series;
+    
+                    // Prepare the options for the pie chart
+                    var options = {
+                        series: seriesData.map(item => item.data),
+                        chart: {
+                            width: 380,
+                            type: 'pie',
+                        },
+                        labels: seriesData.map(item => item.name),
+                        responsive: [{
+                            breakpoint: 480,
+                            options: {
+                                chart: {
+                                    width: 200
+                                },
+                                legend: {
+                                    position: 'bottom'
+                                }
+                            }
+                        }]
+                    };
+    
+                    // Render the pie chart using ApexCharts
+                    var chart = new ApexCharts(document.querySelector("#userpiechart"), options);
+                    chart.render();
+                });
+            }
+        </script>
 
       </body>
 

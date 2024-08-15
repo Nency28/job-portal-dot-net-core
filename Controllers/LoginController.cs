@@ -21,7 +21,7 @@ namespace JobPortalApplication.Controllers
             this.hostingenvironment = hostingenvironment;
 
         }
-       
+
         /*
         public IActionResult Register2()
         {
@@ -207,12 +207,19 @@ namespace JobPortalApplication.Controllers
             }
         }
         */
-
+     
 
         public IActionResult Register()
         {
+            try
+            {
+                ViewBag.CandidateCount = _context.usermodel.Count(u => u.utype == 1);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.CandidateCount = 0; 
+            }
             return View();
-
 
 
 
@@ -230,6 +237,8 @@ namespace JobPortalApplication.Controllers
                     if (existingUser != null)
                     {
                         ModelState.AddModelError("Email", "This email is already registered.");
+                        ViewBag.CandidateCount = _context.usermodel.Count(u => u.utype == 1);
+
                         return View(model);
                     }
 
@@ -260,10 +269,14 @@ namespace JobPortalApplication.Controllers
                 {
 
                     ModelState.AddModelError("", "An error occurred while saving data. Please try again later.");
+                    ViewBag.CandidateCount = _context.usermodel.Count(u => u.utype == 1);
+
                     return View(model);
                 }
             }
             // ViewBag.Countries = _context.country.ToList();
+            ViewBag.CandidateCount = _context.usermodel.Count(u => u.utype == 1);
+
 
             return View(model);
         }
@@ -293,6 +306,7 @@ namespace JobPortalApplication.Controllers
                 }
             }
             int? userId = HttpContext.Session.GetInt32("UserId");
+         //   var qualifications = userdto.Qualification != null ? string.Join(",", userdto.Qualification) : string.Empty;
 
 
             if (userId.HasValue)
@@ -309,6 +323,8 @@ namespace JobPortalApplication.Controllers
                         Address = userdto.Address,
                         Language = userdto.Language,
                         Hometown = userdto.Hometown,
+                        Qualification = userdto.Qualification,
+
                         Pincode = userdto.Pincode,
                         Course = userdto.Course,
                         Duration = userdto.Duration,
@@ -342,7 +358,6 @@ namespace JobPortalApplication.Controllers
         }
 
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Employer(CompanyDto companydto)
@@ -373,6 +388,7 @@ namespace JobPortalApplication.Controllers
                     Image = fileName
                 };
 
+
                 _context.company.Add(company);
                 await _context.SaveChangesAsync();
 
@@ -383,17 +399,29 @@ namespace JobPortalApplication.Controllers
                 return RedirectToAction("Error", "Home");
             }
         }
+
+       
         public IActionResult Index()
         {
+
+
             var userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null)
             {
                 return RedirectToAction("Login", "Login");
             }
+            var isAdmin = HttpContext.Session.GetString("utype") == "3";
+
+            if (isAdmin)
+            {
+                return RedirectToAction("Index", "Admin");
+            }
 
             var company = _context.company.FirstOrDefault(c => c.UserId == userId);
             if (company != null)
             {
+                ViewBag.CompanyName = company.CompanyName; 
+
                 ViewBag.CompanyId = company.CompanyId;
             }
 
@@ -457,8 +485,9 @@ namespace JobPortalApplication.Controllers
             company.UserId = employer.UserId;
 
             _context.SaveChanges();
-
-            return RedirectToAction("Index", "Admin");
+            HttpContext.Session.SetString("CompanyName", company.CompanyName);
+            HttpContext.Session.SetString("CompanyLogo", company.Image);
+            return RedirectToAction("EditCompany", "Login");
         }
 
         public IActionResult Success()
@@ -494,7 +523,7 @@ namespace JobPortalApplication.Controllers
                     HttpContext.Session.SetString("utype", "3");
 
 
-                    return RedirectToAction("Index", "Admin");
+                    return RedirectToAction("AdminDashboard", "Admin");
                 }
 
                 var user = await _context.usermodel.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
@@ -514,6 +543,8 @@ namespace JobPortalApplication.Controllers
 
                         if (company != null)
                         {
+                            HttpContext.Session.SetString("CompanyName", company.CompanyName);
+                            HttpContext.Session.SetString("CompanyLogo", company.Image);
                             HttpContext.Session.SetInt32("CompanyId", company.CompanyId);
                         }
                     }
@@ -524,7 +555,7 @@ namespace JobPortalApplication.Controllers
                     }
                     else if (user.utype == 2)
                     {
-                        return RedirectToAction("Index", "Admin");
+                        return RedirectToAction("CompanyDashboard", "Admin");
                     }
                     else
                     {

@@ -13,7 +13,7 @@
             </style>
     </head>
     <body>
-        <main>
+    <main>
 <div class="container">
      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
         <div class="container">
@@ -21,26 +21,27 @@
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
     
               <div class="d-flex justify-content-center py-4">
+                <a href="index.html" class="logo d-flex align-items-center w-auto">
+                  <img src="~/img/logo.png" alt="">
+                  <span class="d-none d-lg-block">JOBBOARD</span>
+                </a>
               </div>
 
-   <div class="card  " style="margin-top:10px;">
+   <div class="card mb-3">
 
-                <div class="card-body" style="width:600px; height:300px;">
-                <div class="pt-4 pb-2">
+                <div class="card-body" style="width:400px;">
+                <div class="pt-4 pb-2 mt-3">
+                    <h5 class="card-title text-center pb-0 fs-4">Registration Successfully Done!!</h5>
                   </div>    
+                     
+              <div class="d-flex justify-content-center gap-2 mt-5">
+                <a class="btn btn-primary p-3" 
+                asp-action="Index" asp-controller="Home">Back to Home</a>
 
-            <form method="post" action="Login">
-                       <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-               
-                <h2 class="text-center  d-none d-lg-block" style="color: rgb(29, 29, 90);">Registration Successfully Done!!</h2>
-               
-                <div class="form-group">
-                <a class="btn btn-primary p-3" style="margin-left:250px; margin-top:50px; background:rgb(29, 29, 90);" asp-action="Login" asp-controller="Login" >Login</a>
-                 
-                </div>
-                
-            </form>
+                <a class="btn btn-primary p-3" 
+                asp-action="Login" asp-controller="Login">Login</a>
+              </div>
+           
         </div>
     </div>
       </div>
@@ -50,5 +51,7 @@
       </section>
 </div>
 </main>
+
+       
 </body>
 </html>

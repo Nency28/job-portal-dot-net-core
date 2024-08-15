@@ -1,0 +1,28 @@
+﻿@model IEnumerable<JobPortalApplication.Models.CompanyModel.Job>
+
+@foreach (var item in Model)
+{
+    <ul class="job-listings mb-5">
+        <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+            <a asp-action="SingleJob" asp-route-id="@item.JobId"></a>
+            <div class="job-listing-logo">
+                @if (!string.IsNullOrEmpty(item.Company.Image))
+                {
+                    <img src="~/Image/@item.Company.Image" alt="Company Image" style="width:100px; height:100px;" />
+                }
+            </div>
+            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+                <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                    <h2>@Html.DisplayFor(modelItem => item.JobTitle)</h2>
+                    <strong>@Html.DisplayFor(modelItem => item.Company.CompanyName)</strong>
+                </div>
+                <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                    <span class="icon-room"></span> @Html.DisplayFor(modelItem => item.Address)
+                </div>
+                <div class="job-listing-meta">
+                    <span class="badge badge-primary">@Html.DisplayFor(modelItem => item.WorkType)</span>
+                </div>
+            </div>
+        </li>
+    </ul>
+}

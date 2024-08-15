@@ -1,0 +1,107 @@
+﻿@model IEnumerable<JobPortalApplication.Models.CompanyModel.Interview>
+
+@{
+    ViewData["Title"] = "UserInterviews";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .interview-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        height:600px;
+    }
+    .interview {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        width: 80%;
+        max-width: 600px;
+    }
+    .interview div {
+        margin-bottom: 10px;
+    }
+    .section-hero {
+        text-align: center;
+        padding: 50px 0;
+    }
+    .section-title {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #28a745; /* Success color */
+    }
+    .section-subtitle {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 18px;
+        color: #555;
+    }
+</style>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+@if (TempData["ErrMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+
+@if (TempData["DebugMessage"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["DebugMessage"]
+    </div>
+}
+
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('/images/hero_1.jpg');" id="home-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="custom-breadcrumbs">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@foreach (var item in Model)
+{
+    <div class="interview-container">
+        <div class="interview">
+            <h1 class="section-title">Your Interview Schedule</h1>
+<p class="section-subtitle">Below are the details of your upcoming interviews.</p>
+            <div><strong>Job Title:</strong> @Html.DisplayFor(modelItem => item.Job.JobTitle)</div>
+
+            <div><strong>Interview Date:</strong> @Html.DisplayFor(modelItem => item.InterviewDate)</div>
+            <div><strong>Time:</strong> @Html.DisplayFor(modelItem => item.Time)</div>
+            <div><strong>Location:</strong> @Html.DisplayFor(modelItem => item.Location)</div>
+
+          <div class="text-secondary">If you have any query contact with below Email Id or Contact Number </div>
+            @if (item.Job.Company != null)
+            {
+                <div><strong> Email:</strong><a href="mailto:@item.Job.Company.Email"> @item.Job.Company.Email</a></div>
+                <div><strong> Contact:</strong> @item.Job.Company.Mobile</div>
+            }
+            else
+            {
+                <div><strong> Email:</strong> N/A</div>
+                <div><strong> Mobile:</strong> N/A</div>
+            }
+
+           
+        </div>
+    </div>
+}

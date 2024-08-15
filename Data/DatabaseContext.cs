@@ -21,8 +21,9 @@ namespace JobPortalApplication.Data
         public DbSet<Company> company { get; set; }
         public DbSet<Job> job { get; set; }
         public DbSet<JobApplication> jobapplication { get; set; }
+        public DbSet<Interview> interview { get; set; }
 
-        
+
 
 
     }

@@ -38,6 +38,7 @@ namespace JobPortalApplication.Models.Users
         [Required(ErrorMessage = "Pincode is required")]
         public int Pincode { get; set; }
 
+        public string? Qualification { get; set; }
         public int? Course { get; set; }
         [ForeignKey("Course")]
         public Course course { get; set; }

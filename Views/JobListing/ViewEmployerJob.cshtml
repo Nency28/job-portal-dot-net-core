@@ -76,9 +76,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.JobTitle)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
+             <td>
+                    <details>
+                        <summary>View Description</summary>
+                        <p>@item.Description</p>
+                    </details>
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Position)
             </td>
@@ -119,11 +122,16 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Language)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.JobId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.JobId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.JobId">Delete</a>
-            </td>
+               <td>
+                    <a href="@Url.Action("EditJob", "PostJob", new { id = item.JobId })" class="btn btn-primary">Edit</a>
+                </td> 
+                <td>
+                     <form asp-action="DeleteJob" asp-controller="PostJob" method="post" style="display:inline;">
+                    <input type="hidden" name="id" value="@item.JobId" />
+                    <button type="submit" class="btn btn-danger" >Delete</button>
+                </form>
+                </td>
+
         </tr>
 }
     </tbody>

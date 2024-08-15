@@ -33,16 +33,25 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CountryName)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
+           
             <td>
                  <a asp-action="EditCountry" asp-route-id="@item.CountryId"><i class="fa-solid fa-pen-to-square" style="font-size: 24px;"></i></a> 
                  
-                 <a asp-action="DeleteCountry" asp-route-id="@item.CountryId" method="post" onsubmit="return confirm('Are you sure you want to delete this city?')"><i class="fa-solid fa-trash" style="font-size: 24px;"></i></a> 
 
-            </td>
+               <a href="#" onclick="confirmDelete('@item.CountryId')"><i class="fa-solid fa-trash" style="font-size: 24px;"></i></a>
+
+
+                </td>
         </tr>
 }
     </tbody>
 </table>
+@section Scripts {
+    <script>
+        function confirmDelete(id) {
+            if (confirm("Are you sure you want to delete this qualification?")) {
+                window.location.href = '@Url.Action("DeleteCountry", "Admin")/' + id;
+            }
+        }
+    </script>
+}

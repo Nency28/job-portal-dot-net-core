@@ -1,14 +1,35 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using JobPortalApplication.Data;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace JobPortalApplication.Controllers
 {
     public class AboutController : Controller
     {
+        private readonly DatabaseContext _context;
+
+        public AboutController(DatabaseContext context)
+        {
+            _context = context;
+
+        }
         // GET: AboutController
         public ActionResult Index()
         {
-            return View();
+            var joblist = _context.job.Include(c => c.Company).ToList();
+            ViewBag.JobCount = joblist.Count;
+
+            var candidateCount = _context.usermodel.Count(u => u.utype == 1);
+            ViewBag.CandidateCount = candidateCount;
+
+            var companyCount = _context.usermodel.Count(u => u.utype == 2);
+            ViewBag.CompanyCount = companyCount;
+
+            var jobApplicationCount = _context.jobapplication.Count();
+            ViewBag.JobApplicationCount = jobApplicationCount;
+
+            return View(joblist);
         }
 
         // GET: AboutController/Details/5
